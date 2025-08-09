@@ -23,6 +23,8 @@ unitId,
 brandId,
 categoryId,
 expiryDate,
+wholesalePrice,
+shopId,
         } =  req.body;
         //Check if product already exists
         const existingProductSlug = await db.product.findUnique({
@@ -95,6 +97,8 @@ unitId,
 brandId,
 categoryId,
 expiryDate,
+wholesalePrice,
+shopId,
             }
         })
 
@@ -186,6 +190,8 @@ unitId,
 brandId,
 categoryId,
 expiryDate,
+wholesalePrice,
+shopId,
   } = req.body;
   
       // Existing product
@@ -283,6 +289,8 @@ unitId,
 brandId,
 categoryId,
 expiryDate,
+wholesalePrice,
+shopId,
         },
       });
 
@@ -331,3 +339,4 @@ export async function deleteProductById(req: Request, res: Response){
     });
     }
 }
+  

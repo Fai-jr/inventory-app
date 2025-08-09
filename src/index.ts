@@ -8,6 +8,7 @@ import unitRouter from "./routes/unit";
 import brandRouter from "./routes/brand";
 import categoryRouter from "./routes/category";
 import productRouter from "./routes/product";
+import saleRouter from "./routes/sale";
 
 
 require("dotenv").config();
@@ -33,6 +34,7 @@ app.use("/api/v1", unitRouter)
 app.use("/api/v1", brandRouter)
 app.use("/api/v1", categoryRouter)
 app.use("/api/v1", productRouter)
+app.use("/api/v1", saleRouter)
 
 // Create an API
 // GET, POST,PUT,PATCH,DELETE
