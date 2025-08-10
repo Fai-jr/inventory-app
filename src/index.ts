@@ -9,6 +9,9 @@ import brandRouter from "./routes/brand";
 import categoryRouter from "./routes/category";
 import productRouter from "./routes/product";
 import saleRouter from "./routes/sale";
+import payeeRouter from "./routes/payee";
+import ExpenseCategoryRouter from "./routes/expense-cat";
+import expenseRouter from "./routes/expense";
 
 
 require("dotenv").config();
@@ -35,7 +38,7 @@ app.use("/api/v1", brandRouter)
 app.use("/api/v1", categoryRouter)
 app.use("/api/v1", productRouter)
 app.use("/api/v1", saleRouter)
+app.use("/api/v1", payeeRouter)
+app.use("/api/v1", ExpenseCategoryRouter)
+app.use("/api/v1", expenseRouter)
 
-// Create an API
-// GET, POST,PUT,PATCH,DELETE
-// http:localhost:8000/customers

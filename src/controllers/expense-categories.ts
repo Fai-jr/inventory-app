@@ -1,7 +1,7 @@
 import { db } from "@/db/db";
 import { Request, Response } from "express";
 
-export async function createCategory(req: Request, res:Response){
+export async function createExpenseCategory(req: Request, res:Response){
     try {
         //Get the data
         const {
@@ -9,7 +9,7 @@ export async function createCategory(req: Request, res:Response){
              slug,
         } =  req.body;
         //Check if category already exists
-        const existingCategory = await db.category.findUnique({
+        const existingCategory = await db.expenseCategory.findUnique({
             where:{
                 slug
             },
@@ -21,7 +21,7 @@ export async function createCategory(req: Request, res:Response){
             });
         }
         //Create the category
-        const newCategory = await db.category.create({
+        const newCategory = await db.expenseCategory.create({
             data:{
                name,
              slug,
@@ -42,9 +42,9 @@ export async function createCategory(req: Request, res:Response){
     }
 }
 
-export async function getCategories (req: Request, res:Response){
+export async function getExpenseCategories (req: Request, res:Response){
     try {
-        const categories = await db.category.findMany({
+        const categories = await db.expenseCategory.findMany({
             orderBy: { 
                 createdAt:"desc"
             }
@@ -62,10 +62,10 @@ export async function getCategories (req: Request, res:Response){
     }
 }
 
-export async function getSingleCategory (req: Request, res:Response){
+export async function getSingleExpenseCategory (req: Request, res:Response){
     try {
         const { id } = req.params
-        const existingCategory = await db.category.findUnique({
+        const existingCategory = await db.expenseCategory.findUnique({
             where:{
                 id:id
             },
@@ -93,10 +93,10 @@ export async function getSingleCategory (req: Request, res:Response){
     }
 }
 
-export async function deleteCategoryById(req: Request, res: Response){
+export async function deleteExpenseCategoryById(req: Request, res: Response){
     const {id} =req.params
     try {
-      const category = await db.category.findUnique({
+      const category = await db.expenseCategory.findUnique({
         where:{
             id
         },
@@ -104,10 +104,10 @@ export async function deleteCategoryById(req: Request, res: Response){
       if(!category){
         return res.status(404).json({
             data:null,
-            error:"Category Not found"
+            error:"Expense Category Not found"
         })
       }
-     await db.category.delete({
+     await db.expenseCategory.delete({
         where:{
             id
         },
@@ -125,7 +125,7 @@ export async function deleteCategoryById(req: Request, res: Response){
     }
 }
 
-export async function updateCategoryById(req: Request, res: Response){
+export async function updateExpenseCategoryById(req: Request, res: Response){
 
     try {
       const {id} =req.params
@@ -135,7 +135,7 @@ export async function updateCategoryById(req: Request, res: Response){
   } = req.body;
   
       // Existing Category
-      const existingCategory = await db.category.findUnique({
+      const existingCategory = await db.expenseCategory.findUnique({
         where:{
             id
         },
@@ -149,7 +149,7 @@ export async function updateCategoryById(req: Request, res: Response){
       }
       //If the email,suername,phone are unique
       if(slug !== existingCategory.slug){
-        const existingCategoryBySlug = await db.category.findUnique({
+        const existingCategoryBySlug = await db.expenseCategory.findUnique({
       where: {
         slug,
       },
@@ -163,7 +163,7 @@ export async function updateCategoryById(req: Request, res: Response){
       }
 
       //update unit
-        const updatedCategory = await db.category.update({
+        const updatedCategory = await db.expenseCategory.update({
         where:{
             id
         }, 
