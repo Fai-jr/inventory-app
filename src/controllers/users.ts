@@ -284,21 +284,31 @@ export async function updateUserById(req: Request, res: Response){
 
 export async function updateUserPasswordById(req: Request, res: Response){
     const {id} =req.params
-      const { password } = req.body;
+      const { oldPassword,newPassword } = req.body;
     try {
+      //Get the User
       const user = await db.user.findUnique({
         where:{
             id
         },
       }); 
+      //Return error if user not found
       if(!user){
         return res.status(404).json({
             data:null,
             error:"User Not found"
         })
       }
+      // Check if the Old Password matches
+       const passwordMatch = await bcrypt.compare(oldPassword,user.password);
+          if(!passwordMatch){
+              return res.json({
+                  error: "Incorrect Old Password",
+                  data: null,
+              }).status(403);
+          }
       //Hash the Password
-      const hashedPassword: string = await bcrypt.hash(password, 10);
+      const hashedPassword: string = await bcrypt.hash(newPassword, 10);
       const updatedUser = await db.user.update({
         where:{
             id
