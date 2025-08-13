@@ -1,0 +1,1 @@
+    // "generate-schemas": "typescript-json-schema ./src/models/prismaTypes.ts \"*\" --required --strictNullChecks --out ./src/schemas.json",

@@ -1,0 +1,109 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "$Enums.Gender": {
+            "enum": [
+                "FEMALE",
+                "MALE"
+            ],
+            "type": "string"
+        },
+        "$Enums.Role": {
+            "enum": [
+                "ADMIN",
+                "ATTENDANT"
+            ],
+            "type": "string"
+        }
+    },
+    "properties": {
+        "createdAt": {
+            "format": "date-time",
+            "type": "string"
+        },
+        "dob": {
+            "anyOf": [
+                {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                {
+                    "type": "null"
+                }
+            ]
+        },
+        "email": {
+            "type": "string"
+        },
+        "firstName": {
+            "type": "string"
+        },
+        "gender": {
+            "$ref": "#/definitions/$Enums.Gender"
+        },
+        "id": {
+            "type": "string"
+        },
+        "image": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "lastName": {
+            "type": "string"
+        },
+        "password": {
+            "type": "string"
+        },
+        "phone": {
+            "type": "string"
+        },
+        "resetToken": {
+            "type": [
+                "null",
+                "string"
+            ]
+        },
+        "resetTokenExpiry": {
+            "anyOf": [
+                {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                {
+                    "type": "null"
+                }
+            ]
+        },
+        "role": {
+            "$ref": "#/definitions/$Enums.Role"
+        },
+        "updatedAt": {
+            "format": "date-time",
+            "type": "string"
+        },
+        "username": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "createdAt",
+        "dob",
+        "email",
+        "firstName",
+        "gender",
+        "id",
+        "image",
+        "lastName",
+        "password",
+        "phone",
+        "resetToken",
+        "resetTokenExpiry",
+        "role",
+        "updatedAt",
+        "username"
+    ],
+    "type": "object"
+}
+

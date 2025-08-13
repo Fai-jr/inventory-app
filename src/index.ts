@@ -17,13 +17,48 @@ import { error } from "console";
 import notificationRouter from "./routes/notification";
 import adjustmentRouter from "./routes/adjustment";
 import purchaseRouter from "./routes/purchase";
-
+import swaggerUi from "swagger-ui-express";
+import swaggerJsdoc from "swagger-jsdoc";
+import path from "path";
+import schemas from "./schemas.json";
+import { allSchemas } from "./generated/schemaUtils";
 
 require("dotenv").config();
 const cors = require("cors");
 const app = express();
 
 app.use(cors());
+
+
+
+// Swagger UI
+const options = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "IPOS API DOC",
+      version: "1.0.0",
+      description: "A documentation for an IPOS API which has all necessary endpoints",
+    },
+
+    tags: [
+      { name: 'products', description: 'Product operations'},
+      { name: 'users', description: 'User operations'},
+      { name: 'auth', description: 'Authentication'},
+      { name: 'categories', description: 'Category Operations'},
+    ],
+
+     components: {
+      schemas: allSchemas,
+    },
+  },
+  apis: ["./src/routes/*.ts"], // Path to the API docs
+};
+const specs = swaggerJsdoc(options);
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(specs));
+
+
+
 
 const PORT = process.env.PORT || 8000;
 
@@ -55,6 +90,13 @@ const strictLimiter = rateLimit({
     })
   }
 });
+
+
+// Home route
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "home.html"));
+});
+
 
 app.use("/api/v1/sales", strictLimiter);
 app.use("/api/v1/users", strictLimiter);
