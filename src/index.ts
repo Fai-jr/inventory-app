@@ -42,10 +42,22 @@ const options = {
     },
 
     tags: [
-      { name: 'products', description: 'Product operations'},
       { name: 'users', description: 'User operations'},
-      { name: 'auth', description: 'Authentication'},
+      { name: 'products', description: 'Product operations'},
+      { name: 'shops', description: 'shops'},
+      { name: 'adjustments', description: 'adjustment operations'},
+      { name: 'brands', description: 'Brands Operations'},
       { name: 'categories', description: 'Category Operations'},
+      { name: 'customers', description: 'Customer Operations'},
+      { name: 'expense-categories', description: 'Expence Category Operations'},
+      { name: 'login', description: 'login Operations'},
+      { name: 'notifications', description: 'Notification Operations'},
+      { name: 'payees', description: 'Payee Operations'},
+      { name: 'purchases', description: 'Purchase Operations'},
+      { name: 'sales', description: 'Sale Operations'},
+      { name: 'suppliers', description: 'Supplier Operations'},
+      { name: 'units', description: 'Unit Operations'},
+      { name: 'expenses', description: 'Expense Operations'},
     ],
 
      components: {
